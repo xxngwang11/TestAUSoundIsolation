@@ -7,6 +7,11 @@ DerivedData/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcshareddata/
 
 # Swift Package Manager
 .build/
