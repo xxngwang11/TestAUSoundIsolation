@@ -13,6 +13,9 @@ struct ParameterInspectorView: View {
     @State private var parameters: [AUParameterInfo] = []
     @State private var parameterValues: [AUParameterAddress: Float] = [:]
     
+    // Delay for Audio Unit initialization before reading parameters
+    private let parameterReloadDelay: TimeInterval = 0.5
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             Text("Audio Unit Parameters")
@@ -53,7 +56,7 @@ struct ParameterInspectorView: View {
         }
         .onChange(of: audioManager.selectedFileName) { _ in
             // Reload parameters when a new file is loaded
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + parameterReloadDelay) {
                 loadParameters()
             }
         }

@@ -134,7 +134,6 @@ struct ContentView: View {
                 Text("• Processes audio through AVAudioEngine")
                 Text("• Supports WAV files")
                 Text("• iOS 16+ required")
-                Text("• Inspect Audio Unit parameters below")
             }
             .font(.caption)
             .foregroundColor(.secondary)
