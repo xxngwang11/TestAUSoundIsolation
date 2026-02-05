@@ -116,6 +116,14 @@ struct ContentView: View {
                 }
             }
             
+            // Parameter Inspector
+            if audioManager.selectedFileName != nil {
+                Divider()
+                    .padding(.vertical, 10)
+                
+                ParameterInspectorView(audioManager: audioManager)
+            }
+            
             // Information
             VStack(alignment: .leading, spacing: 5) {
                 Text("About:")
@@ -126,6 +134,7 @@ struct ContentView: View {
                 Text("• Processes audio through AVAudioEngine")
                 Text("• Supports WAV files")
                 Text("• iOS 16+ required")
+                Text("• Inspect Audio Unit parameters below")
             }
             .font(.caption)
             .foregroundColor(.secondary)
