@@ -17,6 +17,11 @@ This SwiftUI application demonstrates how to:
 - **AVAudioEngine Integration**: Uses `AVAudioEngine` with `AVAudioUnitEffect` for audio processing
 - **Play/Stop Controls**: Simple UI to control audio playback
 - **Status Display**: Real-time feedback on app state and any errors
+- **Parameter Inspection**: View and adjust Audio Unit parameters in real-time
+  - Enumerates all public parameters from the Audio Unit's AUParameterTree
+  - Displays parameter name, address, current value, and min/max range
+  - Provides sliders for real-time parameter adjustment
+  - Shows clear message if no parameters are available
 
 ## Requirements
 
@@ -99,7 +104,10 @@ xcodebuild -project SoundIsolationDemo.xcodeproj \
 3. **Choose a WAV audio file** from your device
 4. **Tap "Play"** to start playback with Sound Isolation applied
 5. **Tap "Stop"** to stop playback
-6. Monitor the status area for feedback and error messages
+6. **View and adjust parameters** in the Parameter Inspector section (appears after loading a file)
+   - Use the sliders to adjust parameter values in real-time
+   - Observe the effect on audio playback
+7. Monitor the status area for feedback and error messages
 
 ## Project Structure
 
@@ -110,6 +118,7 @@ SoundIsolationDemo/
 └── SoundIsolationDemo/
     ├── SoundIsolationDemoApp.swift  # App entry point
     ├── ContentView.swift            # Main UI (file picker, controls, status)
+    ├── ParameterInspectorView.swift # Audio Unit parameter inspection UI
     ├── AudioManager.swift           # AVAudioEngine & Audio Unit management
     ├── Info.plist                   # App configuration & permissions
     └── Assets.xcassets/             # App icons and resources
@@ -122,12 +131,21 @@ SoundIsolationDemo/
 - Creates and configures the Sound Isolation Audio Unit
 - Connects nodes in the signal chain: Player → Sound Isolation → Output
 - Handles audio file loading and playback
+- Exposes Audio Unit instance for parameter inspection
 
 ### ContentView.swift
 - SwiftUI-based user interface
 - Integrates `UIDocumentPicker` for file selection
 - Provides play/stop controls
 - Displays status and error messages
+- Integrates parameter inspection UI
+
+### ParameterInspectorView.swift
+- Enumerates Audio Unit parameters from AUParameterTree
+- Displays parameter details (name, address, value, range)
+- Provides interactive sliders for real-time parameter adjustment
+- Handles cases where no parameters are available
+- Automatically updates when a new audio file is loaded
 
 ### Info.plist
 - Includes `NSDocumentsFolderUsageDescription` for file access

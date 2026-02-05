@@ -116,6 +116,14 @@ struct ContentView: View {
                 }
             }
             
+            // Parameter Inspector
+            if audioManager.selectedFileName != nil {
+                Divider()
+                    .padding(.vertical, 10)
+                
+                ParameterInspectorView(audioManager: audioManager)
+            }
+            
             // Information
             VStack(alignment: .leading, spacing: 5) {
                 Text("About:")

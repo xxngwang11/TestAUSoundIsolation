@@ -20,6 +20,11 @@ class AudioManager: ObservableObject {
     private var audioFile: AVAudioFile?
     private var soundIsolationUnit: AVAudioUnitEffect?
     
+    // Expose the sound isolation unit for parameter access
+    var audioUnit: AVAudioUnitEffect? {
+        return soundIsolationUnit
+    }
+    
     init() {
         setupAudioSession()
     }
