@@ -13,6 +13,7 @@ class AudioManager: ObservableObject {
     @Published var isPlaying = false
     @Published var selectedFileName: String?
     @Published var lastError: String?
+    @Published var warningMessage: String?
     
     private var audioEngine: AVAudioEngine?
     private var playerNode: AVAudioPlayerNode?
@@ -43,6 +44,7 @@ class AudioManager: ObservableObject {
             audioFile = try AVAudioFile(forReading: url)
             selectedFileName = url.lastPathComponent
             lastError = nil
+            warningMessage = nil
             
             // Setup the audio engine with Sound Isolation
             setupAudioEngine()
@@ -93,7 +95,7 @@ class AudioManager: ObservableObject {
         } else {
             // Fallback if Sound Isolation unit cannot be created
             // Connect directly: Player -> Output
-            lastError = "Warning: Could not create Sound Isolation unit, playing without effect"
+            warningMessage = "Sound Isolation unit not available, playing without effect"
             if let format = audioFile?.processingFormat {
                 engine.connect(player, to: engine.mainMixerNode, format: format)
             }

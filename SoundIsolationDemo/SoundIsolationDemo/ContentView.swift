@@ -106,6 +106,14 @@ struct ContentView: View {
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                 }
+                
+                if let warning = audioManager.warningMessage {
+                    Text("Warning: \(warning)")
+                        .font(.caption)
+                        .foregroundColor(.orange)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
             }
             
             // Information
